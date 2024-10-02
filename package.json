@@ -1,0 +1,21 @@
+{
+    "name": "jpscount",
+    "version": "1.0.0",
+    "description": "counts jobs per shift for aa patrols",
+    "main": "./server/server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "cd ./server && bun server.js"
+    },
+    "engines": {
+        "bun": "1.x"
+    },
+    "keywords": [],
+    "author": "Deyan Valkov",
+    "license": "ISC",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.21.0",
+        "mongoose": "^8.7.0"
+    }
+}
