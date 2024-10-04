@@ -14,7 +14,7 @@ app.listen(PORT, () => {
 // CORS app.use(
 app.use(
     cors({
-        origin: ["http://localhost:3000", "http://192.168.0.12:3000", "https://job-counter.onrender.com"],
+        origin: ["http://localhost:3000", "http://192.168.0.12:3000", "https://jobcounter.onrender.com/"],
         // origin: "*",
     })
 );
