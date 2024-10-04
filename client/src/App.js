@@ -5,16 +5,18 @@ import { JobList } from './components/JobList';
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { ModalSubmitJob } from './components/ModalSubmitJob';
+// const JOB_COUNTER_BACKEND_URL = process.env.JOB_COUNTER_BACKEND_URL
+const PORT = process.env.PORT
 // import './App.css';
 function App() {
   const [jobs, setJobs] = useState([]);
   const [error, setError] = useState("");
   const [showModal, setShowModal] = useState(false);
-
+  console.log(process.env.REACT_APP_BACKEND_URL)
   // Get jobs with todays date
   const fetchJobs = async function () {
     try {
-      const res = await axios.get("http://localhost:5000/jobs/today")
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/jobs/today`)
       const jobs = res.data.today;
       console.log(res.data.today);
       setJobs(jobs)
@@ -29,7 +31,7 @@ function App() {
   // POST Submit Job
   const submitJob = async function (data) {
     try {
-      const res = await axios.post("http://localhost:5000/jobs/", data);
+      const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/jobs/`, data);
       fetchJobs()
     } catch (err) {
       console.error(err.message)
