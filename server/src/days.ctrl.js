@@ -20,7 +20,7 @@ import dateString from '../utils/DateString';
 // Show todays Jobs GET /days/today
 async function showToday(req, res) {
     let today = await Job.find({ date: dateString() })
-    console.log("today", today, dateString())
+    // console.log("today", today, dateString())
     if (!today) { return res.status(404).json({ msg: "Today not found CODE 404" }) }
     try {
         res.status(200).json({ today });
