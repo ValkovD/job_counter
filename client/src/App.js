@@ -12,13 +12,12 @@ function App() {
   const [jobs, setJobs] = useState([]);
   const [error, setError] = useState("");
   const [showModal, setShowModal] = useState(false);
-  console.log(process.env.REACT_APP_BACKEND_URL)
   // Get jobs with todays date
   const fetchJobs = async function () {
     try {
       const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/jobs/today`)
       const jobs = res.data.today;
-      console.log(res.data.today);
+      // console.log(res.data.today);
       setJobs(jobs)
     } catch (err) {
       console.error(err.message)

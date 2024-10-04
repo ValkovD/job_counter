@@ -1,36 +1,26 @@
 import React, { useEffect } from 'react'
 // import { ShiftHours } from './ShiftHours'
 import { useState } from 'react';
-// interface Jobs {
-//     jobOoutcome: string;
-//     notes: string
-// }
-// interface JobListProps {
-//     [x: string]: any;
-//     [index: number]: Jobs
 
-// }
 
 
 export const Navbar = (props) => {
     let { jobs } = props
     // JPS- one shift is taken as 7.7 hrs shift
+    // Shift hours today will probably need to be hooked in DB so can be tracked for current day in history
     const [shiftHours, setShiftHours] = useState(11);
     const [jps, setJps] = useState(jobs.length)
-
     function handleSelectChange(event) {
         setShiftHours(event.target.value);
-        // jpsCalculate()
     }
     // Calculate JPS 
     function jpsCalculate() {
         let jps = jobs.length / (shiftHours / 7.7)
-        console.log(jps)
         setJps(Number(jps.toFixed(2)))
         return jps
     }
-    useEffect(() => { jpsCalculate() }, [])
-    useEffect(() => { jpsCalculate() }, [shiftHours])
+    // useEffect(() => { setJps() }, [])
+    useEffect(() => { jpsCalculate() }, [shiftHours, jobs.length])
 
     return (
         <div className='bg-neutral-300 h-auto p-1'>
@@ -38,7 +28,7 @@ export const Navbar = (props) => {
             <div className='flex justify-around'>
                 <p className=''>Hi Deyan</p>
                 <p>Shift Hrs</p>
-                <select defaultValue={0} onChange={handleSelectChange}>
+                <select defaultValue={shiftHours} onChange={handleSelectChange}>
                     <option value="3">3</option>
                     <option value="3.25">3.25</option>
                     <option value="3.5">3.5</option>
