@@ -77,29 +77,29 @@ async function submitJob(req, res) {
 //     }
 // };
 // Delete day DELETE /days
-// async function deleteDay(req, res) {
-//     if (req.params.id.length !== 24) {
-//         return res
-//             .status(400)
-//             .json([{ msg: "Incorrect id format requested from client" }]);
-//     }
-//     try {
-//         let dayToDelete = await Day.findById(req.params.id).exec();
-//         if (!dayToDelete) {
-//             return res
-//                 .status(404)
-//                 .json({ msg: "Day not found" });
-//         }
-//         let deletedDay = await Day.findByIdAndDelete(dayToDelete);
-//         return res.status(200).json([{ msg: `Day ${deletedDay.date} deleted` }]);
-//     } catch (error) {
-//         console.error(error.message);
-//         res.status(500).json([{ msg: "Server error" }]);
-//     }
-//     const dayToDelete = req.params.id;
-//     console.log(dayToDelete)
-//     res.send(dayToDelete);
-// };
+async function deleteDay(req, res) {
+    if (req.params.id.length !== 24) {
+        return res
+            .status(400)
+            .json([{ msg: "Incorrect id format requested from client" }]);
+    }
+    try {
+        let jobToDelete = await Job.findById(req.params.id).exec();
+        if (!jobToDelete) {
+            return res
+                .status(404)
+                .json({ msg: "Job not found" });
+        }
+        let deletedJob = await Job.findByIdAndDelete(jobToDelete);
+        return res.status(200).json([{ msg: `Job ${deletedJob.date} deleted` }]);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json([{ msg: "Server error" }]);
+    }
+    const jobToDelete = req.params.id;
+    console.log(jobToDelete)
+    res.send(jobToDelete);
+};
 
 // Edit job PUT /days/edit/jobs
 // async function submitJob(req, res) {
@@ -107,9 +107,9 @@ async function submitJob(req, res) {
 //         let date = { date: req.body.date };
 //         let newJobsArray = req.body.jobs
 //         // console.log(newJobsArray)
-//         let findDay = await Day.findOne(date);
+//         let findDay = await Job.findOne(date);
 //         console.log("findDaysssssssssssssssssssssss", findDay)
-//         let updatedDay = await Day.findOneAndUpdate(date, { jobs: [findDay.jobs, ...newJobsArray] }, { new: true });
+//         let updatedDay = await Job.findOneAndUpdate(date, { jobs: [findDay.jobs, ...newJobsArray] }, { new: true });
 //         if (!updatedDay || !findDay) {
 //             return res.status(404).json({ msg: "Day not found CODE 404" })
 //         }
@@ -123,7 +123,7 @@ export default {
     showToday,
     // submitDay,
     submitJob,
-    // deleteDay,
+    deleteDay,
     // showAllDays,
     // fillDays
 }

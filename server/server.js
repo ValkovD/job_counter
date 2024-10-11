@@ -38,7 +38,7 @@ app.use(express.json());
 app.post('/jobs', daysCtrl.submitJob);
 // Submith day POST from Front end 
 // private acces
-// app.delete('/days/:id', daysCtrl.deleteDay);
+app.delete('/jobs/:id', daysCtrl.deleteDay);
 
 //Get current day GET 
 // showing current day on the home page
